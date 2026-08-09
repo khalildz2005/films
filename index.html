@@ -37,7 +37,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ============ HEADER ============ */
         #app-header {
             background: var(--surface);
             border-bottom: 1px solid var(--border);
@@ -96,7 +95,6 @@
             font-weight: 600;
         }
 
-        /* ============ API KEY BAR ============ */
         #api-key-bar {
             background: var(--surface);
             border-bottom: 1px solid var(--border);
@@ -162,16 +160,10 @@
             animation: pulse 1s infinite;
         }
         @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.3;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
 
-        /* ============ MAIN CONTENT ============ */
         #main-content {
             padding: 20px 16px;
             max-width: 1300px;
@@ -179,7 +171,6 @@
             min-height: 60vh;
         }
 
-        /* ============ LOADING & ERRORS ============ */
         #loading-overlay {
             position: fixed;
             top: 0;
@@ -207,11 +198,7 @@
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         .error-banner {
             background: #2d1114;
@@ -224,9 +211,7 @@
             line-height: 1.5;
             word-break: break-all;
         }
-        .error-banner strong {
-            color: #ff8a8a;
-        }
+        .error-banner strong { color: #ff8a8a; }
 
         .empty-state {
             text-align: center;
@@ -240,7 +225,6 @@
             margin-bottom: 12px;
         }
 
-        /* ============ ANIME GRID ============ */
         .section-title {
             font-size: 1.3rem;
             font-weight: 700;
@@ -310,13 +294,9 @@
             font-size: 0.8rem;
         }
 
-        /* ============ DETAILS PAGE ============ */
-        #details-page {
-            display: none;
-        }
-        #details-page.visible {
-            display: block;
-        }
+        #details-page { display: none; }
+        #details-page.visible { display: block; }
+
         .details-header {
             display: flex;
             gap: 20px;
@@ -378,11 +358,8 @@
             margin-bottom: 16px;
             transition: var(--transition);
         }
-        .btn-back:hover {
-            background: var(--border);
-        }
+        .btn-back:hover { background: var(--border); }
 
-        /* ============ EPISODES ============ */
         #episodes-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -406,7 +383,6 @@
             color: var(--accent);
         }
 
-        /* ============ STREAMS MODAL ============ */
         #streams-modal {
             position: fixed;
             top: 0;
@@ -451,13 +427,8 @@
             border-radius: 50%;
             transition: var(--transition);
         }
-        #streams-modal .modal-close:hover {
-            background: var(--border);
-        }
-        #streams-modal h3 {
-            margin-bottom: 16px;
-            font-size: 1.1rem;
-        }
+        #streams-modal .modal-close:hover { background: var(--border); }
+        #streams-modal h3 { margin-bottom: 16px; font-size: 1.1rem; }
         #streams-modal .stream-source {
             background: var(--bg);
             border: 1px solid var(--border);
@@ -500,11 +471,8 @@
             transition: var(--transition);
         }
         .stream-actions button:hover,
-        .stream-actions a:hover {
-            background: var(--accent-hover);
-        }
+        .stream-actions a:hover { background: var(--accent-hover); }
 
-        /* ============ GENRES / NEWS / RECOMMENDATIONS ============ */
         #genres-list {
             display: flex;
             flex-wrap: wrap;
@@ -520,10 +488,7 @@
             cursor: pointer;
             transition: var(--transition);
         }
-        #genres-list span:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
+        #genres-list span:hover { border-color: var(--accent); color: var(--accent); }
 
         .news-card {
             background: var(--surface);
@@ -543,67 +508,28 @@
             flex-shrink: 0;
             background: var(--bg);
         }
-        .news-card .news-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
+        .news-card .news-title { font-weight: 600; font-size: 0.95rem; }
 
-        /* ============ RESPONSIVE ============ */
         @media (max-width: 768px) {
-            #anime-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                gap: 10px;
-            }
-            .details-header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .details-header img {
-                width: 150px;
-            }
-            #app-header {
-                height: auto;
-                padding: 10px 12px;
-                gap: 8px;
-            }
-            #app-header .logo {
-                font-size: 1rem;
-            }
-            #app-header button,
-            #app-header .nav-btn {
-                padding: 6px 10px;
-                font-size: 0.75rem;
-                border-radius: 16px;
-            }
-            #api-key-bar {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            #api-key-bar input {
-                min-width: auto;
-            }
-            #episodes-list {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            }
+            #anime-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+            .details-header { flex-direction: column; align-items: center; text-align: center; }
+            .details-header img { width: 150px; }
+            #app-header { height: auto; padding: 10px 12px; gap: 8px; }
+            #app-header .logo { font-size: 1rem; }
+            #app-header button, #app-header .nav-btn { padding: 6px 10px; font-size: 0.75rem; border-radius: 16px; }
+            #api-key-bar { flex-direction: column; align-items: stretch; }
+            #api-key-bar input { min-width: auto; }
+            #episodes-list { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
         }
         @media (max-width: 400px) {
-            #anime-grid {
-                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-                gap: 8px;
-            }
-            .anime-card .card-title {
-                font-size: 0.75rem;
-            }
-            .details-header img {
-                width: 120px;
-            }
+            #anime-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px; }
+            .anime-card .card-title { font-size: 0.75rem; }
+            .details-header img { width: 120px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ==================== HEADER ==================== -->
     <header id="app-header">
         <span class="logo">🎬 AnimeSlayer Tester</span>
         <nav id="main-nav">
@@ -614,7 +540,6 @@
         </nav>
     </header>
 
-    <!-- ==================== API KEY BAR ==================== -->
     <div id="api-key-bar">
         <label for="api-key-input">🔑 مفتاح RapidAPI:</label>
         <input type="text" id="api-key-input" placeholder="أدخل مفتاح x-rapidapi-key هنا...">
@@ -626,14 +551,9 @@
         </span>
     </div>
 
-    <!-- ==================== LOADING OVERLAY ==================== -->
-    <div id="loading-overlay">
-        <div class="spinner"></div>
-    </div>
+    <div id="loading-overlay"><div class="spinner"></div></div>
 
-    <!-- ==================== MAIN CONTENT ==================== -->
     <main id="main-content">
-        <!-- الصفحة الرئيسية -->
         <div id="home-page">
             <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center;">
                 <input type="text" id="search-input" placeholder="🔍 بحث في الأنمي..." style="flex:1;min-width:200px;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:20px;font-family:inherit;font-size:0.9rem;">
@@ -644,7 +564,6 @@
             <div id="home-error" style="display:none;"></div>
         </div>
 
-        <!-- صفحة التفاصيل -->
         <div id="details-page">
             <button class="btn-back" onclick="showHome()">⬅️ العودة للقائمة</button>
             <div id="details-container"></div>
@@ -653,21 +572,18 @@
             <div id="details-error" style="display:none;"></div>
         </div>
 
-        <!-- صفحة التصنيفات -->
         <div id="genres-page" style="display:none;">
             <h2 class="section-title">🏷️ التصنيفات</h2>
             <div id="genres-list"></div>
             <div id="genres-error" style="display:none;"></div>
         </div>
 
-        <!-- صفحة التوصيات -->
         <div id="recommendations-page" style="display:none;">
             <h2 class="section-title">⭐ التوصيات</h2>
-            <div id="recommendations-grid" class="anime-grid-style" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;"></div>
+            <div id="recommendations-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;"></div>
             <div id="recommendations-error" style="display:none;"></div>
         </div>
 
-        <!-- صفحة الأخبار -->
         <div id="news-page" style="display:none;">
             <h2 class="section-title">📰 آخر الأخبار</h2>
             <div id="news-list"></div>
@@ -675,7 +591,6 @@
         </div>
     </main>
 
-    <!-- ==================== STREAMS MODAL ==================== -->
     <div id="streams-modal">
         <div class="modal-inner">
             <button class="modal-close" onclick="closeStreamsModal()">✕</button>
@@ -684,10 +599,9 @@
         </div>
     </div>
 
-    <!-- ==================== SCRIPTS ==================== -->
     <script>
         (function() {
-            // ============ DOM REFERENCES ============
+            // DOM refs
             const $ = (sel) => document.querySelector(sel);
             const $$ = (sel) => document.querySelectorAll(sel);
 
@@ -719,30 +633,23 @@
             const newsError = $('#news-error');
             const navBtns = $$('#main-nav .nav-btn');
 
-            // ============ STATE ============
             const RAPIDAPI_HOST = 'animeslayer-api.p.rapidapi.com';
             const BASE_URL = 'https://animeslayer-api.p.rapidapi.com';
             let apiKey = localStorage.getItem('animeslayer_api_key') || 'ceb4752baemsh66f9c20d13e570dp11cb61jsn8bd1cc4c986f';
-            let allAnimeData = []; // cached anime list for frontend filtering
-            let currentAnimeId = null;
+            let allAnimeData = [];
+            let currentAnimeData = null; // store loaded anime details for episodes
 
-            // Init
             apiKeyInput.value = apiKey;
             if (apiKey) {
                 updateConnectionStatus('loading', 'جاري التحقق...');
-                testConfig().then(ok => {
-                    if (ok) loadHomeAnime();
-                });
+                testConfig().then(ok => { if (ok) loadHomeAnime(); });
             }
 
-            // ============ UTILITY: Flexible field extraction ============
+            // ========== Utility ==========
             function extractValue(obj, possibleKeys, defaultValue = null) {
                 if (!obj || typeof obj !== 'object') return defaultValue;
                 for (const key of possibleKeys) {
-                    if (obj[key] !== undefined && obj[key] !== null) {
-                        return obj[key];
-                    }
-                    // nested check (e.g., "attributes.title")
+                    if (obj[key] !== undefined && obj[key] !== null) return obj[key];
                     if (typeof obj === 'object' && !Array.isArray(obj)) {
                         const found = findNested(obj, key);
                         if (found !== undefined) return found;
@@ -757,9 +664,7 @@
                 for (const part of parts) {
                     if (current && typeof current === 'object' && part in current) {
                         current = current[part];
-                    } else {
-                        return undefined;
-                    }
+                    } else return undefined;
                 }
                 return current;
             }
@@ -769,12 +674,9 @@
                 if (!data || typeof data !== 'object') return [];
                 for (const key of possibleKeys) {
                     if (Array.isArray(data[key])) return data[key];
-                    if (data[key] && typeof data[key] === 'object' && Array.isArray(data[key].data))
-                        return data[key].data;
-                    if (data[key] && typeof data[key] === 'object' && Array.isArray(data[key].results))
-                        return data[key].results;
+                    if (data[key] && typeof data[key] === 'object' && Array.isArray(data[key].data)) return data[key].data;
+                    if (data[key] && typeof data[key] === 'object' && Array.isArray(data[key].results)) return data[key].results;
                 }
-                // try to find any array in the object
                 for (const val of Object.values(data)) {
                     if (Array.isArray(val) && val.length > 0) return val;
                 }
@@ -791,23 +693,13 @@
                 return s.length > maxLen ? s.substring(0, maxLen) + '...' : s;
             }
 
-            // ============ API CALL ============
+            // ========== API call ==========
             async function apiCall(endpoint, params = {}, method = 'GET') {
-                if (!apiKey) throw new Error('مفتاح API غير موجود. الرجاء إدخال المفتاح أولاً.');
-
+                if (!apiKey) throw new Error('مفتاح API غير موجود.');
                 const url = new URL(BASE_URL + endpoint);
                 if (method === 'GET') {
-                    Object.entries(params).forEach(([k, v]) => {
-                        if (v !== undefined && v !== null && v !== '') url.searchParams.set(k, v);
-                    });
+                    Object.entries(params).forEach(([k, v]) => { if (v !== undefined && v !== null && v !== '') url.searchParams.set(k, v); });
                 }
-
-                console.log(`%c🚀 API Request: %c${method} %c${url.toString()}`,
-                    'color:#58a6ff;font-weight:bold;', 'color:#fff;', 'color:#8b949e;');
-                console.log(`%c   Headers: %c${JSON.stringify({ 'x-rapidapi-host': RAPIDAPI_HOST,
-                    'x-rapidapi-key': apiKey.substring(0, 8) + '...' })}`,
-                    'color:#d2991d;', 'color:#8b949e;');
-
                 const options = {
                     method,
                     headers: {
@@ -816,111 +708,60 @@
                         'Content-Type': 'application/json',
                     },
                 };
-                if (method !== 'GET' && Object.keys(params).length > 0) {
-                    options.body = JSON.stringify(params);
-                }
-
+                if (method !== 'GET' && Object.keys(params).length > 0) options.body = JSON.stringify(params);
                 const response = await fetch(url.toString(), options);
-                console.log(`%c📥 Response Status: %c${response.status} %c${response.statusText}`,
-                    'color:#3fb950;', 'color:#fff;', 'color:#8b949e;');
-
                 const rawText = await response.text();
-                console.log(`%c📄 Raw Response (first 1000 chars): %c${rawText.substring(0, 1000)}`,
-                    'color:#d2991d;', 'color:#8b949e;');
-
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}\n${rawText.substring(0, 500)}`);
-                }
-
-                let data;
+                if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}\n${rawText.substring(0, 500)}`);
                 try {
-                    data = JSON.parse(rawText);
-                    console.log(`%c✅ Parsed JSON:`, 'color:#3fb950;', data);
+                    return JSON.parse(rawText);
                 } catch (e) {
-                    console.warn('⚠️ Response is not JSON, returning raw text');
                     return { _raw: rawText, _isRaw: true };
                 }
-                return data;
             }
 
-            // ============ CONNECTION STATUS ============
             function updateConnectionStatus(state, msg) {
                 statusDot.className = 'status-dot ' + state;
                 statusText.textContent = msg;
-                statusText.style.color = state === 'ok' ? '#3fb950' : state === 'err' ? '#f85149' : state ===
-                    'loading' ? '#d2991d' : '#8b949e';
-                if (state === 'ok') statusDot.style.background = '#3fb950';
-                else if (state === 'err') statusDot.style.background = '#f85149';
-                else if (state === 'loading') statusDot.style.background = '#d2991d';
-                else statusDot.style.background = '#8b949e';
+                statusText.style.color = state === 'ok' ? '#3fb950' : state === 'err' ? '#f85149' : state === 'loading' ? '#d2991d' : '#8b949e';
+                statusDot.style.background = state === 'ok' ? '#3fb950' : state === 'err' ? '#f85149' : state === 'loading' ? '#d2991d' : '#8b949e';
             }
 
             async function testConfig() {
-                if (!apiKey) {
-                    updateConnectionStatus('err', 'لا يوجد مفتاح');
-                    return false;
-                }
+                if (!apiKey) { updateConnectionStatus('err', 'لا يوجد مفتاح'); return false; }
                 updateConnectionStatus('loading', 'جاري الاختبار...');
                 try {
-                    const data = await apiCall('/config');
-                    console.log('✅ /config response:', data);
+                    await apiCall('/config');
                     updateConnectionStatus('ok', 'متصل ✓');
                     return true;
                 } catch (err) {
-                    console.error('❌ /config failed:', err);
                     updateConnectionStatus('err', 'فشل الاتصال');
                     return false;
                 }
             }
 
-            // ============ LOADING OVERLAY ============
             function showLoading() { loadingOverlay.classList.add('visible'); }
-
             function hideLoading() { loadingOverlay.classList.remove('visible'); }
 
-            // ============ SHOW ERROR ============
             function showError(container, message) {
                 if (!container) return;
                 container.style.display = 'block';
-                container.innerHTML =
-                    `<div class="error-banner"><strong>⚠️ خطأ:</strong><br>${message.replace(/\n/g, '<br>')}</div>`;
-                console.error('❌ Error displayed:', message);
+                container.innerHTML = `<div class="error-banner"><strong>⚠️ خطأ:</strong><br>${message.replace(/\n/g, '<br>')}</div>`;
             }
+            function hideError(container) { if (container) { container.style.display = 'none'; container.innerHTML = ''; } }
 
-            function hideError(container) {
-                if (container) { container.style.display = 'none';
-                    container.innerHTML = ''; }
-            }
-
-            // ============ NAVIGATION ============
-            function navigateTo(page) {
-                [homePage, detailsPage, genresPage, recommendationsPage, newsPage].forEach(p => p.style.display =
-                    'none');
+            // ========== Page switching (simplified) ==========
+            function switchPage(page) {
+                [homePage, detailsPage, genresPage, recommendationsPage, newsPage].forEach(p => p.style.display = 'none');
+                detailsPage.classList.remove('visible');
                 navBtns.forEach(b => b.classList.remove('active'));
-
-                switch (page) {
-                    case 'home':
-                        homePage.style.display = 'block';
-                        navBtns[0].classList.add('active');
-                        break;
-                    case 'genres':
-                        genresPage.style.display = 'block';
-                        navBtns[1].classList.add('active');
-                        loadGenres();
-                        break;
-                    case 'recommendations':
-                        recommendationsPage.style.display = 'block';
-                        navBtns[2].classList.add('active');
-                        loadRecommendations();
-                        break;
-                    case 'news':
-                        newsPage.style.display = 'block';
-                        navBtns[3].classList.add('active');
-                        loadNews();
-                        break;
-                    default:
-                        homePage.style.display = 'block';
-                        navBtns[0].classList.add('active');
+                if (page === 'details') {
+                    detailsPage.style.display = 'block';
+                    detailsPage.classList.add('visible');
+                } else {
+                    const pages = { home: homePage, genres: genresPage, recommendations: recommendationsPage, news: newsPage };
+                    if (pages[page]) pages[page].style.display = 'block';
+                    const idx = { home: 0, genres: 1, recommendations: 2, news: 3 };
+                    if (navBtns[idx[page]]) navBtns[idx[page]].classList.add('active');
                 }
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
@@ -928,137 +769,65 @@
             navBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const page = btn.dataset.page;
-                    navigateTo(page);
+                    switchPage(page);
+                    if (page === 'genres') loadGenres();
+                    else if (page === 'recommendations') loadRecommendations();
+                    else if (page === 'news') loadNews();
                 });
             });
 
-            function showHome() {
-                navigateTo('home');
+            window.showHome = function() {
+                switchPage('home');
                 if (allAnimeData.length === 0 && apiKey) loadHomeAnime();
-            }
-
-            function showDetails(animeId) {
-                currentAnimeId = animeId;
-                navigateTo('details');
-                // Actually we need to show details page
-                [homePage, genresPage, recommendationsPage, newsPage].forEach(p => p.style.display = 'none');
-                detailsPage.style.display = 'block';
-                detailsPage.classList.add('visible');
-                navBtns.forEach(b => b.classList.remove('active'));
-                loadAnimeDetails(animeId);
-                loadEpisodes(animeId);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            // Override navigateTo for details
-            const origNavigateTo = navigateTo;
-            navigateTo = function(page) {
-                if (page === 'details') {
-                    [homePage, genresPage, recommendationsPage, newsPage].forEach(p => p.style.display = 'none');
-                    detailsPage.style.display = 'block';
-                    detailsPage.classList.add('visible');
-                    navBtns.forEach(b => b.classList.remove('active'));
-                } else {
-                    detailsPage.style.display = 'none';
-                    detailsPage.classList.remove('visible');
-                    origNavigateTo(page);
-                }
             };
 
-            // ============ HOME: LOAD ANIME LIST ============
+            window._showDetails = function(id) {
+                if (!id) return;
+                currentAnimeId = id;
+                switchPage('details');
+                loadAnimeDetails(id);
+            };
+
+            function closeStreamsModal() {
+                streamsModal.classList.remove('visible');
+                streamsContent.innerHTML = '';
+            }
+            window.closeStreamsModal = closeStreamsModal;
+            streamsModal.addEventListener('click', function(e) { if (e.target === streamsModal) closeStreamsModal(); });
+
+            // ========== Home & grid ==========
             async function loadHomeAnime(searchQuery = '') {
                 hideError(homeError);
-                animeGrid.innerHTML =
-                    '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل الأنمي...</div>';
+                animeGrid.innerHTML = '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل الأنمي...</div>';
                 showLoading();
                 try {
-                    const params = { limit: 50, sort_by: 'rating' };
-                    if (searchQuery.trim()) {
-                        params.search = searchQuery.trim();
-                        params.limit = 100;
-                    }
+                    const params = { limit: 50 };
+                    if (searchQuery.trim()) { params.search = searchQuery.trim(); params.limit = 100; }
                     const data = await apiCall('/anime', params);
-                    const animeList = extractArray(data, ['data', 'results', 'items', 'anime', 'animes',
-                    'list']);
-                    console.log(`📊 Extracted anime list length: ${animeList.length}`);
-                    console.log('📊 First item sample:', animeList[0]);
-
+                    const animeList = extractArray(data, ['data', 'results', 'items', 'anime', 'animes', 'list']);
                     allAnimeData = animeList;
                     renderAnimeGrid(animeList);
                     hideError(homeError);
                 } catch (err) {
-                    console.error('❌ loadHomeAnime error:', err);
                     showError(homeError, err.message || 'فشل تحميل قائمة الأنمي');
-                    animeGrid.innerHTML =
-                        '<div class="empty-state"><span class="icon">😢</span>تعذر تحميل الأنمي</div>';
-                } finally {
-                    hideLoading();
-                }
+                    animeGrid.innerHTML = '<div class="empty-state"><span class="icon">😢</span>تعذر تحميل الأنمي</div>';
+                } finally { hideLoading(); }
             }
 
             function renderAnimeGrid(animeList) {
                 if (!animeList || animeList.length === 0) {
-                    animeGrid.innerHTML =
-                        '<div class="empty-state"><span class="icon">📭</span>لا يوجد أنمي لعرضه</div>';
+                    animeGrid.innerHTML = '<div class="empty-state"><span class="icon">📭</span>لا يوجد أنمي لعرضه</div>';
                     return;
                 }
                 animeGrid.innerHTML = animeList.map(anime => {
-                    const id = extractValue(anime, [
-                        'anime_id',
-                        'id',
-                        '_id',
-                        'slug'
-                    ]);
-
-                    const title = extractValue(anime, [
-                        'anime_name',
-                        'title',
-                        'name',
-                        'title_en',
-                        'title_ar',
-                        'english_title'
-                    ], 'غير معروف');
-
-                    const image = extractValue(anime, [
-                        'anime_cover_image_url',
-                        'image',
-                        'poster',
-                        'poster_url',
-                        'thumbnail',
-                        'cover_image',
-                        'image_url',
-                        'main_picture'
-                    ], '');
-
-                    const rating = extractValue(anime, [
-                        'anime_rating',
-                        'rating',
-                        'score',
-                        'average_rating',
-                        'mal_rating',
-                        'rating_score'
-                    ], null);
-
-                    const type = extractValue(anime, [
-                        'anime_type',
-                        'type',
-                        'media_type'
-                    ], '');
-
-                    const status = extractValue(anime, [
-                        'anime_status',
-                        'status',
-                        'airing_status'
-                    ], '');
-
-                    console.log(`🃏 Card: id=${id}, title=${title}, image=${image}, rating=${rating}`);
-
-                    const imgSrc = image && image.startsWith('http') ? image : '';
-                    const imgFallback =
-                        'data:image/svg+xml,' + encodeURIComponent(
-                            '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="213" fill="%23161b22"><rect width="160" height="213"/><text x="80" y="110" text-anchor="middle" fill="%238b949e" font-size="14">No Image</text></svg>'
-                            );
-
+                    const id = extractValue(anime, ['anime_id', 'id', '_id', 'slug']);
+                    const title = extractValue(anime, ['anime_name', 'title', 'name', 'title_en', 'title_ar', 'english_title'], 'غير معروف');
+                    const image = extractValue(anime, ['anime_cover_image_url', 'image', 'poster', 'poster_url', 'thumbnail', 'cover_image', 'image_url', 'main_picture'], '');
+                    const rating = extractValue(anime, ['anime_rating', 'rating', 'score', 'average_rating', 'mal_rating', 'rating_score'], null);
+                    const type = extractValue(anime, ['anime_type', 'type', 'media_type'], '');
+                    const status = extractValue(anime, ['anime_status', 'status', 'airing_status'], '');
+                    const imgSrc = (image && image.startsWith('http')) ? image : '';
+                    const imgFallback = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="160" height="213" fill="%23161b22"><rect width="160" height="213"/><text x="80" y="110" text-anchor="middle" fill="%238b949e" font-size="14">No Image</text></svg>');
                     return `
                 <div class="anime-card" onclick="window._showDetails('${id || ''}')" data-id="${id || ''}">
                   <img src="${imgSrc || imgFallback}" alt="${safeString(title)}" loading="lazy" onerror="this.src='${imgFallback}'">
@@ -1074,66 +843,48 @@
                 }).join('');
             }
 
-            // Expose for onclick
-            window._showDetails = function(id) {
-                if (id) showDetails(id);
-            };
-
-            // ============ SEARCH ============
             btnSearch.addEventListener('click', () => {
                 const query = searchInput.value.trim();
                 if (query && apiKey) {
                     loadHomeAnime(query);
                 } else if (allAnimeData.length > 0) {
-                    // Frontend filter
                     const q = query.toLowerCase();
                     const filtered = allAnimeData.filter(a => {
-                        const t = extractValue(a, ['title', 'name', 'title_en'], '');
+                        const t = extractValue(a, ['anime_name', 'title', 'name', 'title_en'], '');
                         return safeString(t).toLowerCase().includes(q);
                     });
                     renderAnimeGrid(filtered);
                 }
             });
-            searchInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') btnSearch.click();
-            });
+            searchInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') btnSearch.click(); });
 
-            // ============ DETAILS ============
+            // ========== Anime details ==========
             async function loadAnimeDetails(animeId) {
                 hideError(detailsError);
-                detailsContainer.innerHTML =
-                    '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل التفاصيل...</div>';
+                detailsContainer.innerHTML = '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل التفاصيل...</div>';
+                episodesList.innerHTML = '';
                 showLoading();
                 try {
                     const data = await apiCall(`/anime/${animeId}`, { more_info: 'true', episodes: 'true' });
-                    console.log('📊 Anime details raw:', data);
-
-                    // The response might wrap the anime in a key
                     const anime = extractValue(data, ['data', 'anime', 'result', 'item']) || data;
-                    console.log('📊 Extracted anime object:', anime);
+                    currentAnimeData = anime; // store for episodes
 
-                    const title = extractValue(anime, ['title', 'name', 'title_en', 'english_title'], 'غير معروف');
-                    const image = extractValue(anime, ['image', 'poster', 'poster_url', 'cover_image',
-                    'image_url'], '');
-                    const description = extractValue(anime, ['description', 'synopsis', 'story', 'summary',
-                        'overview'
-                    ], 'لا يوجد وصف');
-                    const rating = extractValue(anime, ['rating', 'score', 'average_rating'], '—');
-                    const status = extractValue(anime, ['status', 'airing_status'], '—');
-                    const type = extractValue(anime, ['type', 'media_type'], '—');
-                    const genresArr = extractValue(anime, ['genres', 'genre', 'tags', 'categories'], []);
-                    const genresStr = Array.isArray(genresArr) ?
-                        genresArr.map(g => typeof g === 'object' ? (g.name || g.title || g.genre_name || '') : safeString(
-                            g)).filter(Boolean).join('، ') :
-                        safeString(genresArr);
-                    const year = extractValue(anime, ['year', 'release_year', 'start_date'], '');
-                    const episodesCount = extractValue(anime, ['episodes_count', 'episodes', 'total_episodes',
-                    'episode_count'], '?');
+                    const title = extractValue(anime, ['anime_name', 'title', 'name', 'anime_english_title', 'english_title'], 'غير معروف');
+                    const image = extractValue(anime, ['anime_cover_image_url', 'anime_banner_image_url', 'image', 'poster', 'poster_url', 'cover_image', 'image_url'], '');
+                    const description = extractValue(anime, ['anime_description', 'description', 'synopsis', 'story', 'summary', 'overview'], 'لا يوجد وصف');
+                    const rating = extractValue(anime, ['anime_rating', 'rating', 'score', 'average_rating'], '—');
+                    const type = extractValue(anime, ['anime_type', 'type', 'media_type'], '—');
+                    const status = extractValue(anime, ['anime_status', 'status', 'airing_status'], '—');
+                    const genresRaw = extractValue(anime, ['anime_genres', 'genres', 'genre', 'tags', 'categories'], '');
+                    const genresStr = Array.isArray(genresRaw) ? genresRaw.map(g => typeof g === 'object' ? (g.name || g.title || g.genre_name || '') : safeString(g)).filter(Boolean).join('، ') : safeString(genresRaw);
+                    const year = extractValue(anime, ['anime_release_year', 'year', 'release_year', 'start_date'], '');
+                    const season = extractValue(anime, ['anime_season', 'season'], '');
+                    const episodesCount = extractValue(anime, ['more_info_result.episodes', 'episodes.count', 'total_episodes', 'episode_count'], '?');
+                    const scoreBy = extractValue(anime, ['more_info_result.scored_by', 'scored_by'], '');
+                    const duration = extractValue(anime, ['more_info_result.duration', 'duration'], '');
+                    const studios = extractValue(anime, ['more_info_result.anime_studios', 'anime_studios'], '');
 
-                    const imgSrc = image && image.startsWith('http') ? image :
-                        'data:image/svg+xml,' + encodeURIComponent(
-                            '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="267" fill="%23161b22"><rect width="200" height="267"/><text x="100" y="140" text-anchor="middle" fill="%238b949e" font-size="16">No Image</text></svg>'
-                            );
+                    const imgSrc = (image && image.startsWith('http')) ? image : 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="267" fill="%23161b22"><rect width="200" height="267"/><text x="100" y="140" text-anchor="middle" fill="%238b949e" font-size="16">No Image</text></svg>');
 
                     detailsContainer.innerHTML = `
                 <div class="details-header">
@@ -1145,7 +896,11 @@
                       ${status !== '—' ? `<span>📡 ${safeString(status)}</span>` : ''}
                       ${rating !== '—' ? `<span>⭐ ${safeString(rating)}</span>` : ''}
                       ${year ? `<span>📅 ${safeString(year)}</span>` : ''}
+                      ${season ? `<span>🍃 ${safeString(season)}</span>` : ''}
                       ${episodesCount !== '?' ? `<span>🎬 ${safeString(episodesCount)} حلقة</span>` : ''}
+                      ${duration ? `<span>⏱️ ${safeString(duration)}</span>` : ''}
+                      ${studios ? `<span>🏢 ${safeString(studios)}</span>` : ''}
+                      ${scoreBy ? `<span>👥 ${safeString(scoreBy)} مصوّت</span>` : ''}
                     </div>
                     ${genresStr ? `<div class="meta-row"><span>🏷️ ${genresStr}</span></div>` : ''}
                     <div class="description">${safeString(description)}</div>
@@ -1153,261 +908,220 @@
                 </div>`;
                     hideError(detailsError);
                 } catch (err) {
-                    console.error('❌ loadAnimeDetails error:', err);
                     showError(detailsError, err.message || 'فشل تحميل تفاصيل الأنمي');
                     detailsContainer.innerHTML = '';
                 } finally {
                     hideLoading();
+                    // after details loaded, load episodes from stored data or separate call
+                    loadEpisodes(animeId);
                 }
             }
 
-            // ============ EPISODES ============
+            // ========== Episodes ==========
             async function loadEpisodes(animeId) {
-                episodesList.innerHTML =
-                    '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل الحلقات...</div>';
+                episodesList.innerHTML = '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل الحلقات...</div>';
                 try {
-                    const data = await apiCall(`/anime/${animeId}/episodes`, { version: 'new', limit: 100 });
-                    console.log('📊 Episodes raw:', data);
-                    const episodes = extractArray(data, ['data', 'results', 'items', 'episodes', 'list']);
-                    console.log(`📊 Extracted episodes length: ${episodes.length}`);
+                    let episodesArr = [];
+                    // prefer data from already fetched anime details
+                    if (currentAnimeData && currentAnimeData.episodes && Array.isArray(currentAnimeData.episodes.data)) {
+                        episodesArr = currentAnimeData.episodes.data;
+                    } else {
+                        // fallback to separate episodes endpoint
+                        const data = await apiCall(`/anime/${animeId}/episodes`, { version: 'new', limit: 200 });
+                        // response may contain data array directly or under 'episodes' key
+                        episodesArr = extractArray(data, ['episodes', 'data', 'results', 'items', 'list']);
+                        if (episodesArr.length === 0 && Array.isArray(data.episodes?.data)) {
+                            episodesArr = data.episodes.data;
+                        }
+                    }
 
-                    if (episodes.length === 0) {
-                        episodesList.innerHTML =
-                            '<div class="empty-state"><span class="icon">📭</span>لا توجد حلقات متاحة</div>';
+                    if (!episodesArr || episodesArr.length === 0) {
+                        episodesList.innerHTML = '<div class="empty-state"><span class="icon">📭</span>لا توجد حلقات متاحة</div>';
                         return;
                     }
 
-                    episodesList.innerHTML = episodes.map(ep => {
-                        const epId = extractValue(ep, ['id', 'episode_id', '_id', 'number']);
-                        const epNum = extractValue(ep, ['number', 'episode_number', 'ep', 'title'],
-                            safeString(epId));
-                        const epTitle = extractValue(ep, ['title', 'name', 'episode_title'], '');
-                        const label = epTitle ? `${safeString(epNum)} - ${safeString(epTitle)}` :
-                            `الحلقة ${safeString(epNum)}`;
-                        return `
-                  <button class="episode-btn" onclick="window._loadStreams('${animeId}', '${epId}')" title="${safeString(label)}">
-                    🎬 ${safeString(label)}
-                  </button>`;
+                    episodesList.innerHTML = episodesArr.map(ep => {
+                        const epId = extractValue(ep, ['episode_id', 'id', '_id', 'number']);
+                        const epNum = extractValue(ep, ['episode_number', 'number', 'ep'], safeString(epId));
+                        const epName = extractValue(ep, ['episode_name', 'title', 'name', 'episode_title'], '');
+                        const label = epName ? `${safeString(epNum)} - ${safeString(epName)}` : `الحلقة ${safeString(epNum)}`;
+                        return `<button class="episode-btn" onclick="window._loadStreams('${animeId}', '${epId}')" title="${safeString(label)}">🎬 ${safeString(label)}</button>`;
                     }).join('');
                 } catch (err) {
-                    console.error('❌ loadEpisodes error:', err);
-                    episodesList.innerHTML =
-                        '<div class="empty-state"><span class="icon">⚠️</span>تعذر تحميل الحلقات</div>';
+                    episodesList.innerHTML = '<div class="empty-state"><span class="icon">⚠️</span>تعذر تحميل الحلقات</div>';
                 }
             }
 
-            // ============ STREAMS ============
+            // ========== Streams modal ==========
             window._loadStreams = async function(animeId, episodeId) {
-                streamsContent.innerHTML =
-                    '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل روابط المشاهدة...</div>';
+                streamsContent.innerHTML = '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل روابط المشاهدة...</div>';
                 streamsModal.classList.add('visible');
                 showLoading();
                 try {
                     const data = await apiCall(`/anime/${animeId}/episodes/${episodeId}/streams`);
-                    console.log('📊 Streams raw:', data);
-                    const streams = extractArray(data, ['data', 'results', 'items', 'streams', 'sources',
-                    'list']);
-                    console.log(`📊 Extracted streams length: ${streams.length}`);
-
-                    if (streams.length === 0) {
-                        streamsContent.innerHTML =
-                            '<div class="empty-state"><span class="icon">📭</span>لا توجد روابط مشاهدة متاحة لهذه الحلقة</div>';
+                    const providers = extractValue(data, ['providers'], []);
+                    if (!Array.isArray(providers) || providers.length === 0) {
+                        // attempt fallback array extraction
+                        const arr = extractArray(data, ['providers', 'data', 'results', 'streams', 'sources']);
+                        if (arr.length > 0) {
+                            renderStreamsFromProviders(arr);
+                        } else {
+                            streamsContent.innerHTML = '<div class="empty-state"><span class="icon">📭</span>لا توجد روابط مشاهدة</div>';
+                        }
                         return;
                     }
-
-                    streamsContent.innerHTML = streams.map((stream, idx) => {
-                        const sourceName = extractValue(stream, ['name', 'source', 'server',
-                            'quality', 'label'
-                        ], `مصدر ${idx + 1}`);
-                        const url = extractValue(stream, ['url', 'link', 'stream_url', 'file',
-                            'src'
-                        ], '');
-                        const quality = extractValue(stream, ['quality', 'resolution', 'label'],
-                            '');
-                        const isDirectVideo = url && (url.endsWith('.mp4') || url.endsWith(
-                            '.m3u8') || url.endsWith('.webm') || url.includes('video'));
-
-                        let videoBlock = '';
-                        if (isDirectVideo) {
-                            videoBlock = `
-                      <video controls style="width:100%;max-height:350px;background:#000;border-radius:6px;margin-top:8px;" 
-                             onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                        <source src="${url}" type="video/mp4">
-                        متصفحك لا يدعم تشغيل الفيديو.
-                      </video>
-                      <div style="display:none;color:#f85149;font-size:0.8rem;margin-top:4px;">⚠️ تعذر تشغيل الفيديو مباشرة (قد يكون محميًا أو به مشكلة CORS)</div>`;
-                        }
-
-                        return `
-                  <div class="stream-source">
-                    <div class="source-name">📡 ${safeString(sourceName)} ${quality ? `(${safeString(quality)})` : ''}</div>
-                    ${videoBlock}
-                    <div class="stream-actions" style="margin-top:6px;">
-                      ${url ? `<a href="${url}" target="_blank" rel="noopener">🔗 فتح الرابط في نافذة جديدة</a>` : '<span style="color:#f85149;">لا يوجد رابط</span>'}
-                      ${url ? `<button onclick="navigator.clipboard.writeText('${url}').then(()=>alert('تم نسخ الرابط!'))">📋 نسخ الرابط</button>` : ''}
-                    </div>
-                    ${!isDirectVideo && url ? `<div style="font-size:0.75rem;color:#8b949e;margin-top:4px;word-break:break-all;">🔗 ${url}</div>` : ''}
-                  </div>`;
-                    }).join('');
+                    renderStreamsFromProviders(providers);
                 } catch (err) {
-                    console.error('❌ loadStreams error:', err);
-                    streamsContent.innerHTML =
-                        `<div class="error-banner"><strong>⚠️ خطأ:</strong><br>${err.message}</div>`;
-                } finally {
-                    hideLoading();
-                }
+                    streamsContent.innerHTML = `<div class="error-banner"><strong>⚠️ خطأ:</strong><br>${err.message}</div>`;
+                } finally { hideLoading(); }
             };
 
-            function closeStreamsModal() {
-                streamsModal.classList.remove('visible');
-                streamsContent.innerHTML = '';
+            function renderStreamsFromProviders(providers) {
+                let html = '';
+                providers.forEach(prov => {
+                    if (prov.type === 'cdn' && Array.isArray(prov.signed_urls)) {
+                        html += `<div class="stream-source"><div class="source-name">📡 CDN (خوادم مباشرة)</div>`;
+                        prov.signed_urls.forEach(s => {
+                            const label = s.label || s.quality || '';
+                            const quality = s.quality || '';
+                            const url = s.url || '';
+                            html += `
+                            <div style="margin-bottom:8px; border-bottom:1px solid #30363d; padding-bottom:6px;">
+                              <div style="font-weight:500;margin-bottom:4px;">${safeString(label)} ${quality ? `(${quality})` : ''}</div>
+                              <div class="stream-actions">
+                                ${url ? `<a href="${url}" target="_blank" rel="noopener">🔗 فتح</a>` : ''}
+                                ${url ? `<button onclick="navigator.clipboard.writeText('${url}').then(()=>alert('تم النسخ'))">📋 نسخ</button>` : ''}
+                              </div>
+                              ${url ? `<div style="font-size:0.7rem;color:#8b949e;margin-top:4px;word-break:break-all;">${url}</div>` : ''}
+                            </div>`;
+                        });
+                        html += `</div>`;
+                    } else if (prov.type === 'muilt' && Array.isArray(prov.providers)) {
+                        html += `<div class="stream-source"><div class="source-name">🌐 روابط خارجية</div>`;
+                        prov.providers.forEach(p => {
+                            const label = p.label || 'مصدر';
+                            const url = p.url || '';
+                            html += `
+                            <div style="margin-bottom:8px;">
+                              <div style="font-weight:500;">${safeString(label)}</div>
+                              <div class="stream-actions" style="margin-top:4px;">
+                                ${url ? `<a href="${url}" target="_blank">🔗 فتح</a>` : ''}
+                                ${url ? `<button onclick="navigator.clipboard.writeText('${url}').then(()=>alert('تم النسخ'))">📋 نسخ</button>` : ''}
+                              </div>
+                              ${url ? `<div style="font-size:0.7rem;color:#8b949e;word-break:break-all;">${url}</div>` : ''}
+                            </div>`;
+                        });
+                        html += `</div>`;
+                    } else {
+                        // unknown structure, try to display as generic
+                        const label = prov.label || prov.name || prov.type || 'مصدر';
+                        const url = prov.url || '';
+                        html += `<div class="stream-source"><div class="source-name">📡 ${safeString(label)}</div>
+                          <div class="stream-actions">${url ? `<a href="${url}" target="_blank">🔗 فتح</a>` : ''} ${url ? `<button onclick="navigator.clipboard.writeText('${url}').then(()=>alert('تم النسخ'))">📋 نسخ</button>` : ''}</div>
+                          ${url ? `<div style="font-size:0.7rem;color:#8b949e;word-break:break-all;">${url}</div>` : ''}
+                        </div>`;
+                    }
+                });
+                streamsContent.innerHTML = html || '<div class="empty-state"><span class="icon">📭</span>لا توجد روابط</div>';
             }
-            window.closeStreamsModal = closeStreamsModal;
-            streamsModal.addEventListener('click', function(e) {
-                if (e.target === streamsModal) closeStreamsModal();
-            });
 
-            // ============ GENRES ============
+            // ========== Genres, Recommendations, News ==========
             async function loadGenres() {
                 hideError(genresError);
-                genresList.innerHTML =
-                    '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل التصنيفات...</div>';
+                genresList.innerHTML = '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل التصنيفات...</div>';
                 showLoading();
                 try {
                     const data = await apiCall('/genres');
-                    console.log('📊 Genres raw:', data);
                     const genres = extractArray(data, ['data', 'results', 'items', 'genres', 'list']);
-                    console.log(`📊 Extracted genres length: ${genres.length}`);
-
                     if (genres.length === 0) {
-                        genresList.innerHTML =
-                            '<div class="empty-state"><span class="icon">📭</span>لا توجد تصنيفات</div>';
+                        genresList.innerHTML = '<div class="empty-state"><span class="icon">📭</span>لا توجد تصنيفات</div>';
                         return;
                     }
-
                     genresList.innerHTML = genres.map(g => {
-                        const name = extractValue(g, ['name', 'title', 'genre_name', 'label'],
-                            'غير معروف');
-                        const gid = extractValue(g, ['id', 'genre_id', '_id'], '');
-                        return `<span onclick="navigateTo('home');searchInput.value='${safeString(name)}';btnSearch.click();" title="اضغط للبحث عن أنمي بهذا التصنيف">${safeString(name)}</span>`;
+                        const name = extractValue(g, ['name', 'title', 'genre_name', 'label'], 'غير معروف');
+                        return `<span onclick="switchPage('home');searchInput.value='${safeString(name)}';btnSearch.click();" title="بحث عن ${safeString(name)}">${safeString(name)}</span>`;
                     }).join('');
                     hideError(genresError);
                 } catch (err) {
-                    console.error('❌ loadGenres error:', err);
                     showError(genresError, err.message || 'فشل تحميل التصنيفات');
                     genresList.innerHTML = '';
-                } finally {
-                    hideLoading();
-                }
+                } finally { hideLoading(); }
             }
 
-            // ============ RECOMMENDATIONS ============
             async function loadRecommendations() {
                 hideError(recommendationsError);
-                recommendationsGrid.innerHTML =
-                    '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل التوصيات...</div>';
+                recommendationsGrid.innerHTML = '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل التوصيات...</div>';
                 showLoading();
                 try {
                     const data = await apiCall('/recommendations');
-                    console.log('📊 Recommendations raw:', data);
                     const recs = extractArray(data, ['data', 'results', 'items', 'recommendations', 'list']);
-                    console.log(`📊 Extracted recommendations length: ${recs.length}`);
-
                     if (recs.length === 0) {
-                        recommendationsGrid.innerHTML =
-                            '<div class="empty-state"><span class="icon">📭</span>لا توجد توصيات</div>';
+                        recommendationsGrid.innerHTML = '<div class="empty-state"><span class="icon">📭</span>لا توجد توصيات</div>';
                         return;
                     }
-
                     recommendationsGrid.innerHTML = recs.map(rec => {
-                        const id = extractValue(rec, ['id', 'anime_id', '_id', 'slug']);
-                        const title = extractValue(rec, ['title', 'name', 'title_en'], 'غير معروف');
-                        const image = extractValue(rec, ['image', 'poster', 'poster_url',
-                        'thumbnail'], '');
-                        const rating = extractValue(rec, ['rating', 'score'], null);
-                        const imgSrc = image && image.startsWith('http') ? image :
-                            'data:image/svg+xml,' + encodeURIComponent(
-                                '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="213" fill="%23161b22"><rect width="160" height="213"/><text x="80" y="110" text-anchor="middle" fill="%238b949e">No Image</text></svg>'
-                                );
+                        const id = extractValue(rec, ['anime_id', 'id', '_id', 'slug']);
+                        const title = extractValue(rec, ['anime_name', 'title', 'name', 'title_en'], 'غير معروف');
+                        const image = extractValue(rec, ['anime_cover_image_url', 'image', 'poster', 'poster_url', 'thumbnail'], '');
+                        const rating = extractValue(rec, ['anime_rating', 'rating', 'score'], null);
+                        const imgSrc = (image && image.startsWith('http')) ? image : 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="160" height="213" fill="%23161b22"><rect width="160" height="213"/><text x="80" y="110" text-anchor="middle" fill="%238b949e">No Image</text></svg>');
                         return `
-                  <div class="anime-card" onclick="window._showDetails('${id || ''}')" data-id="${id || ''}">
-                    <img src="${imgSrc}" alt="${safeString(title)}" loading="lazy" onerror="this.src='data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="160" height="213" fill="%23161b22"><rect width="160" height="213"/><text x="80" y="110" text-anchor="middle" fill="%238b949e">Error</text></svg>')}'">
-                    <div class="card-info">
-                      <div class="card-title">${safeString(title)}</div>
-                      ${rating !== null ? `<div class="card-rating">⭐ ${safeString(rating)}</div>` : ''}
-                    </div>
-                  </div>`;
+                    <div class="anime-card" onclick="window._showDetails('${id || ''}')">
+                      <img src="${imgSrc}" alt="${safeString(title)}" loading="lazy" onerror="this.src='data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="160" height="213" fill="%23161b22"><rect width="160" height="213"/><text x="80" y="110" text-anchor="middle" fill="%238b949e">Error</text></svg>')}'">
+                      <div class="card-info">
+                        <div class="card-title">${safeString(title)}</div>
+                        ${rating !== null ? `<div class="card-rating">⭐ ${safeString(rating)}</div>` : ''}
+                      </div>
+                    </div>`;
                     }).join('');
                     hideError(recommendationsError);
                 } catch (err) {
-                    console.error('❌ loadRecommendations error:', err);
                     showError(recommendationsError, err.message || 'فشل تحميل التوصيات');
                     recommendationsGrid.innerHTML = '';
-                } finally {
-                    hideLoading();
-                }
+                } finally { hideLoading(); }
             }
 
-            // ============ NEWS ============
             async function loadNews() {
                 hideError(newsError);
-                newsList.innerHTML =
-                    '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل الأخبار...</div>';
+                newsList.innerHTML = '<div class="empty-state"><span class="icon">⏳</span>جاري تحميل الأخبار...</div>';
                 showLoading();
                 try {
                     const data = await apiCall('/news');
-                    console.log('📊 News raw:', data);
                     const news = extractArray(data, ['data', 'results', 'items', 'news', 'articles', 'list']);
-                    console.log(`📊 Extracted news length: ${news.length}`);
-
                     if (news.length === 0) {
-                        newsList.innerHTML =
-                            '<div class="empty-state"><span class="icon">📭</span>لا توجد أخبار</div>';
+                        newsList.innerHTML = '<div class="empty-state"><span class="icon">📭</span>لا توجد أخبار</div>';
                         return;
                     }
-
                     newsList.innerHTML = news.map(n => {
-                        const title = extractValue(n, ['title', 'name', 'headline', 'news_title'],
-                            'بدون عنوان');
-                        const image = extractValue(n, ['image', 'thumbnail', 'cover', 'image_url'],
-                        '');
+                        const title = extractValue(n, ['title', 'name', 'headline', 'news_title'], 'بدون عنوان');
+                        const image = extractValue(n, ['image', 'thumbnail', 'cover', 'image_url'], '');
                         const url = extractValue(n, ['url', 'link', 'news_url'], '');
-                        const excerpt = extractValue(n, ['excerpt', 'description', 'summary',
-                        'content'], '');
-                        const imgTag = image && image.startsWith('http') ?
-                            `<img src="${image}" alt="" onerror="this.style.display='none'">` : '';
+                        const excerpt = extractValue(n, ['excerpt', 'description', 'summary', 'content'], '');
+                        const imgTag = (image && image.startsWith('http')) ? `<img src="${image}" alt="" onerror="this.style.display='none'">` : '';
                         return `
-                  <div class="news-card">
-                    ${imgTag}
-                    <div>
-                      <div class="news-title">${safeString(title)}</div>
-                      ${excerpt ? `<div style="font-size:0.8rem;color:#8b949e;margin-top:4px;">${truncate(excerpt, 200)}</div>` : ''}
-                      ${url ? `<a href="${url}" target="_blank" rel="noopener" style="color:#58a6ff;font-size:0.8rem;">اقرأ المزيد ←</a>` : ''}
-                    </div>
-                  </div>`;
+                    <div class="news-card">
+                      ${imgTag}
+                      <div>
+                        <div class="news-title">${safeString(title)}</div>
+                        ${excerpt ? `<div style="font-size:0.8rem;color:#8b949e;margin-top:4px;">${truncate(excerpt, 200)}</div>` : ''}
+                        ${url ? `<a href="${url}" target="_blank" rel="noopener" style="color:#58a6ff;font-size:0.8rem;">اقرأ المزيد ←</a>` : ''}
+                      </div>
+                    </div>`;
                     }).join('');
                     hideError(newsError);
                 } catch (err) {
-                    console.error('❌ loadNews error:', err);
                     showError(newsError, err.message || 'فشل تحميل الأخبار');
                     newsList.innerHTML = '';
-                } finally {
-                    hideLoading();
-                }
+                } finally { hideLoading(); }
             }
 
-            // ============ EVENT LISTENERS ============
+            // ========== Event listeners ==========
             btnSaveKey.addEventListener('click', () => {
                 apiKey = apiKeyInput.value.trim();
                 if (apiKey) {
                     localStorage.setItem('animeslayer_api_key', apiKey);
                     updateConnectionStatus('loading', 'تم الحفظ، جاري الاختبار...');
-                    testConfig().then(ok => {
-                        if (ok) {
-                            allAnimeData = [];
-                            loadHomeAnime();
-                        }
-                    });
+                    testConfig().then(ok => { if (ok) { allAnimeData = []; loadHomeAnime(); } });
                 } else {
                     localStorage.removeItem('animeslayer_api_key');
                     updateConnectionStatus('err', 'لا يوجد مفتاح');
@@ -1416,33 +1130,20 @@
 
             btnTestConfig.addEventListener('click', async () => {
                 apiKey = apiKeyInput.value.trim();
-                if (!apiKey) {
-                    updateConnectionStatus('err', 'أدخل المفتاح أولاً');
-                    return;
-                }
+                if (!apiKey) { updateConnectionStatus('err', 'أدخل المفتاح أولاً'); return; }
                 localStorage.setItem('animeslayer_api_key', apiKey);
                 const ok = await testConfig();
-                if (ok && allAnimeData.length === 0) {
-                    loadHomeAnime();
-                }
+                if (ok && allAnimeData.length === 0) loadHomeAnime();
             });
 
-            // Keyboard shortcut to close modal
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && streamsModal.classList.contains('visible')) {
-                    closeStreamsModal();
-                }
+                if (e.key === 'Escape' && streamsModal.classList.contains('visible')) closeStreamsModal();
             });
 
-            // ============ INITIAL LOG ============
-            console.log('%c🎬 AnimeSlayer API Tester %cجاهز',
-                'color:#58a6ff;font-size:1.2rem;font-weight:bold;', 'color:#3fb950;');
+            console.log('%c🎬 AnimeSlayer API Tester %cجاهز', 'color:#58a6ff;font-size:1.2rem;font-weight:bold;', 'color:#3fb950;');
             console.log('%c📌 Base URL: %c' + BASE_URL, 'color:#d2991d;', 'color:#8b949e;');
-            console.log('%c🔑 API Key loaded: %c' + (apiKey ? 'نعم (' + apiKey.substring(0, 6) + '...)' : 'لا'),
-                'color:#d2991d;', 'color:#8b949e;');
-            console.log('%c💡 جميع الطلبات والردود ستظهر هنا في الـ Console للتصحيح',
-            'color:#8b949e;font-style:italic;');
-
+            console.log('%c🔑 API Key loaded: %c' + (apiKey ? 'نعم (' + apiKey.substring(0, 6) + '...)' : 'لا'), 'color:#d2991d;', 'color:#8b949e;');
+            console.log('%c💡 جميع الطلبات والردود ستظهر هنا في الـ Console للتصحيح', 'color:#8b949e;font-style:italic;');
         })();
     </script>
 </body>
