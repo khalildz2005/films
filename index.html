@@ -1003,18 +1003,53 @@
                     return;
                 }
                 animeGrid.innerHTML = animeList.map(anime => {
-                    const id = extractValue(anime, ['id', 'anime_id', '_id', 'slug']);
-                    const title = extractValue(anime, ['title', 'name', 'title_en', 'title_ar',
+                    const id = extractValue(anime, [
+                        'anime_id',
+                        'id',
+                        '_id',
+                        'slug'
+                    ]);
+
+                    const title = extractValue(anime, [
+                        'anime_name',
+                        'title',
+                        'name',
+                        'title_en',
+                        'title_ar',
                         'english_title'
                     ], 'غير معروف');
-                    const image = extractValue(anime, ['image', 'poster', 'poster_url', 'thumbnail',
-                        'cover_image', 'image_url', 'main_picture'
+
+                    const image = extractValue(anime, [
+                        'anime_cover_image_url',
+                        'image',
+                        'poster',
+                        'poster_url',
+                        'thumbnail',
+                        'cover_image',
+                        'image_url',
+                        'main_picture'
                     ], '');
-                    const rating = extractValue(anime, ['rating', 'score', 'average_rating',
-                        'mal_rating', 'rating_score'
+
+                    const rating = extractValue(anime, [
+                        'anime_rating',
+                        'rating',
+                        'score',
+                        'average_rating',
+                        'mal_rating',
+                        'rating_score'
                     ], null);
-                    const type = extractValue(anime, ['type', 'media_type', 'anime_type'], '');
-                    const status = extractValue(anime, ['status', 'airing_status'], '');
+
+                    const type = extractValue(anime, [
+                        'anime_type',
+                        'type',
+                        'media_type'
+                    ], '');
+
+                    const status = extractValue(anime, [
+                        'anime_status',
+                        'status',
+                        'airing_status'
+                    ], '');
 
                     console.log(`🃏 Card: id=${id}, title=${title}, image=${image}, rating=${rating}`);
 
