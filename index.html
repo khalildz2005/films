@@ -3,34 +3,521 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EgyDead - استخراج المحتوى</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AnimeSlayer API Test</title>
+    <style>
+        :root {
+            --bg-color: #0d0d12;
+            --navbar-bg: #15151e;
+            --card-bg: #1c1c28;
+            --primary: #e53935;
+            --primary-hover: #ef5350;
+            --text: #f0f0f0;
+            --text-muted: #8b8b9e;
+            --border: #2a2a35;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text); line-height: 1.6; }
+
+        /* Navbar */
+        nav { background: var(--navbar-bg); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); cursor: pointer; }
+        .nav-links { display: flex; gap: 1rem; align-items: center; }
+        .nav-btn { background: none; border: none; color: var(--text); font-size: 1rem; cursor: pointer; transition: 0.2s; }
+        .nav-btn:hover { color: var(--primary); }
+        .search-box { padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid var(--border); background: var(--bg-color); color: var(--text); outline: none; }
+
+        /* Containers */
+        .container { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-title { margin-bottom: 1rem; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 0.5rem; }
+
+        /* Grids & Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
+        .card { background: var(--card-bg); border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s; border: 1px solid var(--border); }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .card img { width: 100%; height: 260px; object-fit: cover; }
+        .card-info { padding: 1rem; }
+        .card-title { font-size: 1rem; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-meta { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+        /* Tags (Genres) */
+        .tags-container { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+        .tag { background: var(--card-bg); padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.85rem; border: 1px solid var(--border); }
+
+        /* Details View */
+        .details-header { display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .details-poster { width: 250px; border-radius: 8px; border: 2px solid var(--border); }
+        .details-info { flex: 1; min-width: 300px; }
+        .details-info h1 { margin-bottom: 1rem; color: var(--primary); }
+        .details-info p { margin-bottom: 0.5rem; color: var(--text-muted); }
+        .details-info span.white-text { color: var(--text); }
+        .back-btn { background: var(--border); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .back-btn:hover { background: var(--primary); }
+
+        /* Episodes & Player */
+        .episodes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.5rem; margin-top: 1rem; }
+        .ep-btn { background: var(--card-bg); border: 1px solid var(--border); padding: 0.8rem; border-radius: 4px; color: var(--text); cursor: pointer; text-align: center; }
+        .ep-btn:hover { background: var(--primary); border-color: var(--primary); }
+        .player-container { background: #000; padding: 1rem; border-radius: 8px; margin-top: 2rem; display: none; text-align: center; border: 1px solid var(--border); }
+        video { width: 100%; max-height: 500px; background: #000; outline: none; border-radius: 8px; }
+        .stream-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1rem; }
+        .stream-btn { background: var(--primary); color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 4px; font-size: 0.9rem; border: none; cursor: pointer; }
+        .stream-btn:hover { background: var(--primary-hover); }
+
+        /* Utilities */
+        .hidden { display: none !important; }
+        .loading { text-align: center; padding: 3rem; color: var(--primary); font-size: 1.2rem; }
+        .error { text-align: center; padding: 2rem; color: #ff5252; background: rgba(255, 82, 82, 0.1); border-radius: 8px; margin: 1rem 0; }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 1rem; }
+            .details-header { flex-direction: column; align-items: center; text-align: center; }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>EgyDead Extractor</h1>
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="ابحث عن فيلم أو مسلسل...">
-            <select id="categorySelect">
-                <option value="">كل الأقسام</option>
-            </select>
-            <button id="searchBtn">بحث</button>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo" onclick="switchView('home-view')">AnimeSlayer Test</div>
+        <div class="nav-links">
+            <button class="nav-btn" onclick="switchView('home-view')">الرئيسية</button>
+            <button class="nav-btn" onclick="switchView('news-view')">الأخبار</button>
+            <input type="text" class="search-box" id="searchInput" placeholder="ابحث عن أنمي هنا..." oninput="handleSearch()">
         </div>
-        <div id="results" class="grid"></div>
-        <div id="pagination">
-            <button id="prevPage" style="display:none;">السابق</button>
-            <button id="nextPage" style="display:none;">التالي</button>
+    </nav>
+
+    <!-- App Views -->
+    <div id="app">
+        
+        <!-- Home View -->
+        <div id="home-view" class="container">
+            <div id="genres-section">
+                <h2 class="section-title">التصنيفات (Genres)</h2>
+                <div id="genres-container" class="tags-container"></div>
+            </div>
+
+            <div id="recommendations-section">
+                <h2 class="section-title">توصيات الأنمي</h2>
+                <div id="recommendations-container" class="grid"></div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h2 class="section-title">قائمة الأنمي (الرئيسية)</h2>
+                <div id="anime-list-container" class="grid"></div>
+            </div>
         </div>
-        <div id="details" class="hidden">
-            <div id="detailContent"></div>
-            <h3>الحلقات</h3>
-            <ul id="episodesList"></ul>
+
+        <!-- News View -->
+        <div id="news-view" class="container hidden">
+            <h2 class="section-title">آخر الأخبار</h2>
+            <div id="news-container" class="grid"></div>
         </div>
-        <div id="videoLinks" class="hidden">
-            <h3>روابط المشاهدة</h3>
-            <ul id="linksList"></ul>
+
+        <!-- Details View -->
+        <div id="details-view" class="container hidden">
+            <button class="back-btn" onclick="switchView('home-view')">← العودة للرئيسية</button>
+            
+            <div id="details-content">
+                <!-- Injected via JS -->
+            </div>
+
+            <div class="player-container" id="player-section">
+                <h3 style="margin-bottom: 1rem;">مشغل الحلقة</h3>
+                <div id="video-wrapper"></div>
+                <div id="stream-links-wrapper" class="stream-links"></div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <h2 class="section-title">الحلقات</h2>
+                <div id="episodes-container" class="episodes-grid"></div>
+            </div>
         </div>
+
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // === Configuration ===
+        const API_BASE = 'https://animeslayer-api.p.rapidapi.com';
+        const HEADERS = {
+            'x-rapidapi-host': 'animeslayer-api.p.rapidapi.com',
+            'x-rapidapi-key': 'ceb4752baemsh66f9c20d13e570dp11cb61jsn8bd1cc4c986f',
+            'Content-Type': 'application/json'
+        };
+
+        // Global State
+        let allAnimeList = []; // For local search fallback
+        
+        // === Utility Functions ===
+        // Handle variations in JSON structure from API safely
+        function extractArray(response) {
+            if (!response) return [];
+            if (Array.isArray(response)) return response;
+            if (response.data && Array.isArray(response.data)) return response.data;
+            if (response.results && Array.isArray(response.results)) return response.results;
+            if (response.items && Array.isArray(response.items)) return response.items;
+            return [];
+        }
+
+        function getSafeValue(obj, keys, fallback = 'غير متوفر') {
+            if (!obj) return fallback;
+            for (let key of keys) {
+                if (obj[key] !== undefined && obj[key] !== null && obj[key] !== '') {
+                    return obj[key];
+                }
+            }
+            return fallback;
+        }
+
+        // View Router
+        function switchView(viewId) {
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('news-view').classList.add('hidden');
+            document.getElementById('details-view').classList.add('hidden');
+            document.getElementById(viewId).classList.remove('hidden');
+            window.scrollTo(0, 0);
+
+            // Load data when switching if needed
+            if (viewId === 'news-view' && document.getElementById('news-container').innerHTML === '') {
+                fetchNews();
+            }
+        }
+
+        // Generic API Fetcher
+        async function fetchAPI(endpoint) {
+            const url = `${API_BASE}${endpoint}`;
+            console.log(`[API REQUEST] 🚀 ${url}`);
+            try {
+                const response = await fetch(url, { headers: HEADERS });
+                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+                const data = await response.json();
+                console.log(`[API RESPONSE] ✅ ${endpoint}:`, data);
+                return data;
+            } catch (error) {
+                console.error(`[API ERROR] ❌ ${endpoint}:`, error);
+                throw error;
+            }
+        }
+
+        // === Main Functions ===
+
+        // 1. App Initialization
+        async function initApp() {
+            // Optional: Test Config Endpoint
+            try {
+                const config = await fetchAPI('/config');
+                console.log('App Config:', config);
+            } catch (e) { console.warn('Config endpoint failed, skipping.'); }
+
+            fetchGenres();
+            fetchRecommendations();
+            fetchAnimeList();
+        }
+
+        // 2. Fetch Genres
+        async function fetchGenres() {
+            const container = document.getElementById('genres-container');
+            container.innerHTML = '<div class="loading">جاري تحميل التصنيفات...</div>';
+            try {
+                const res = await fetchAPI('/genres');
+                const genres = extractArray(res);
+                if (genres.length === 0) {
+                    container.innerHTML = '<span>لا توجد تصنيفات</span>';
+                    return;
+                }
+                container.innerHTML = genres.map(g => {
+                    let name = typeof g === 'string' ? g : getSafeValue(g, ['name', 'title', 'genre']);
+                    return `<span class="tag">${name}</span>`;
+                }).join('');
+            } catch (error) {
+                container.innerHTML = `<div class="error">فشل تحميل التصنيفات.</div>`;
+            }
+        }
+
+        // 3. Fetch Recommendations
+        async function fetchRecommendations() {
+            const container = document.getElementById('recommendations-container');
+            container.innerHTML = '<div class="loading">جاري تحميل التوصيات...</div>';
+            try {
+                const res = await fetchAPI('/recommendations');
+                const recs = extractArray(res);
+                if (recs.length === 0) {
+                    document.getElementById('recommendations-section').style.display = 'none';
+                    return;
+                }
+                renderAnimeCards(recs.slice(0, 6), container); // Show only top 6
+            } catch (error) {
+                document.getElementById('recommendations-section').style.display = 'none';
+            }
+        }
+
+        // 4. Fetch Main Anime List
+        async function fetchAnimeList() {
+            const container = document.getElementById('anime-list-container');
+            container.innerHTML = '<div class="loading">جاري تحميل قائمة الأنمي...</div>';
+            try {
+                const res = await fetchAPI('/anime');
+                allAnimeList = extractArray(res);
+                if (allAnimeList.length === 0) {
+                    container.innerHTML = `<div class="error">القائمة فارغة، تأكد من استجابة الـ API.</div>`;
+                    return;
+                }
+                renderAnimeCards(allAnimeList, container);
+            } catch (error) {
+                container.innerHTML = `<div class="error">فشل جلب الأنميات: ${error.message}</div>`;
+            }
+        }
+
+        // Render Cards (Used for main list, recommendations, search)
+        function renderAnimeCards(list, container) {
+            container.innerHTML = list.map(anime => {
+                const id = getSafeValue(anime, ['id', '_id', 'anime_id']);
+                const title = getSafeValue(anime, ['title', 'name', 'title_en']);
+                const image = getSafeValue(anime, ['poster_url', 'image', 'picture', 'thumbnail'], 'https://via.placeholder.com/200x300?text=No+Image');
+                const rating = getSafeValue(anime, ['rating', 'score'], '-');
+                
+                return `
+                    <div class="card" onclick="openAnimeDetails('${id}')">
+                        <img src="${image}" alt="${title}" loading="lazy" onerror="this.src='https://via.placeholder.com/200x300?text=Error'">
+                        <div class="card-info">
+                            <div class="card-title" title="${title}">${title}</div>
+                            <div class="card-meta">⭐ التقييم: ${rating}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 5. Search Logic (Local fallback if /search endpoint doesn't exist)
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const container = document.getElementById('anime-list-container');
+            
+            if (query.trim() === '') {
+                renderAnimeCards(allAnimeList, container);
+                return;
+            }
+
+            const filtered = allAnimeList.filter(anime => {
+                const title = getSafeValue(anime, ['title', 'name', 'title_en', 'title_ar']).toLowerCase();
+                return title.includes(query);
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="error">لا يوجد نتائج تطابق بحثك.</div>';
+            } else {
+                renderAnimeCards(filtered, container);
+            }
+        }
+
+        // 6. Fetch News
+        async function fetchNews() {
+            const container = document.getElementById('news-container');
+            container.innerHTML = '<div class="loading">جاري تحميل الأخبار...</div>';
+            try {
+                const res = await fetchAPI('/news');
+                const newsList = extractArray(res);
+                if (newsList.length === 0) {
+                    container.innerHTML = '<div class="error">لا توجد أخبار حالياً.</div>';
+                    return;
+                }
+                
+                container.innerHTML = newsList.map(item => {
+                    const title = getSafeValue(item, ['title', 'headline']);
+                    const desc = getSafeValue(item, ['description', 'summary', 'content'], '');
+                    const image = getSafeValue(item, ['image', 'thumbnail', 'poster_url']);
+                    const link = getSafeValue(item, ['link', 'url', 'source']);
+                    const date = getSafeValue(item, ['date', 'created_at', 'time'], '');
+
+                    return `
+                        <div class="card">
+                            ${image !== 'غير متوفر' ? `<img src="${image}" alt="${title}">` : ''}
+                            <div class="card-info">
+                                <div class="card-title">${title}</div>
+                                <div class="card-meta">${date}</div>
+                                <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-muted);">${desc.substring(0, 100)}...</p>
+                                ${link !== 'غير متوفر' ? `<a href="${link}" target="_blank" class="stream-btn" style="display:inline-block; margin-top:0.5rem;">اقرأ المزيد</a>` : ''}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                container.innerHTML = `<div class="error">فشل تحميل الأخبار.</div>`;
+            }
+        }
+
+        // 7. Open Anime Details View
+        async function openAnimeDetails(animeId) {
+            switchView('details-view');
+            
+            // Hide player and empty episodes from previous anime
+            document.getElementById('player-section').style.display = 'none';
+            document.getElementById('video-wrapper').innerHTML = '';
+            document.getElementById('stream-links-wrapper').innerHTML = '';
+            document.getElementById('episodes-container').innerHTML = '';
+            
+            const contentContainer = document.getElementById('details-content');
+            contentContainer.innerHTML = '<div class="loading">جاري جلب تفاصيل الأنمي...</div>';
+
+            try {
+                // Fetch Details
+                let detailsData = await fetchAPI(`/anime/${animeId}`);
+                // Safely extract the object in case it's wrapped in { data: {...} }
+                const details = detailsData.data || detailsData.results || detailsData;
+
+                const title = getSafeValue(details, ['title', 'name']);
+                const image = getSafeValue(details, ['poster_url', 'image', 'picture'], 'https://via.placeholder.com/300x400');
+                const desc = getSafeValue(details, ['description', 'story', 'synopsis'], 'لا توجد قصة متوفرة.');
+                const status = getSafeValue(details, ['status', 'state']);
+                const year = getSafeValue(details, ['year', 'release_year', 'season']);
+                const rating = getSafeValue(details, ['score', 'rating']);
+                const genresArr = extractArray(details.genres || details.tags);
+                const genresHtml = genresArr.map(g => `<span class="tag">${g.name || g}</span>`).join('');
+
+                contentContainer.innerHTML = `
+                    <div class="details-header">
+                        <img src="${image}" alt="${title}" class="details-poster">
+                        <div class="details-info">
+                            <h1>${title}</h1>
+                            <p><strong>الحالة:</strong> <span class="white-text">${status}</span></p>
+                            <p><strong>سنة الإنتاج:</strong> <span class="white-text">${year}</span></p>
+                            <p><strong>التقييم:</strong> <span class="white-text">${rating}</span></p>
+                            ${genresHtml ? `<div class="tags-container" style="margin-top:1rem;">${genresHtml}</div>` : ''}
+                            <h3 style="margin-top:1rem; margin-bottom:0.5rem;">القصة:</h3>
+                            <p class="white-text" style="line-height:1.8;">${desc}</p>
+                        </div>
+                    </div>
+                `;
+
+                // Optional: Fire and forget stats fetching just to log it (as requested)
+                fetchAPI(`/anime/${animeId}/stats`).catch(()=>console.log('No stats available'));
+
+                // Fetch Episodes
+                fetchEpisodes(animeId);
+
+            } catch (error) {
+                contentContainer.innerHTML = `<div class="error">حدث خطأ أثناء تحميل التفاصيل: ${error.message}</div>`;
+            }
+        }
+
+        // 8. Fetch Episodes
+        async function fetchEpisodes(animeId) {
+            const container = document.getElementById('episodes-container');
+            container.innerHTML = '<div class="loading">جاري جلب الحلقات...</div>';
+            try {
+                const res = await fetchAPI(`/anime/${animeId}/episodes`);
+                const episodes = extractArray(res);
+                
+                if (episodes.length === 0) {
+                    container.innerHTML = '<div class="error">لا توجد حلقات متوفرة.</div>';
+                    return;
+                }
+
+                container.innerHTML = episodes.map((ep, index) => {
+                    const epId = getSafeValue(ep, ['id', '_id', 'episode_id']);
+                    const epNum = getSafeValue(ep, ['number', 'episode_number'], index + 1);
+                    const epTitle = getSafeValue(ep, ['title', 'name'], `حلقة ${epNum}`);
+                    return `<div class="ep-btn" onclick="fetchStreams('${animeId}', '${epId}')">${epTitle}</div>`;
+                }).join('');
+            } catch (error) {
+                container.innerHTML = `<div class="error">حدث خطأ أثناء جلب الحلقات.</div>`;
+            }
+        }
+
+        // 9. Fetch Streams and Play
+        async function fetchStreams(animeId, episodeId) {
+            const playerSection = document.getElementById('player-section');
+            const videoWrapper = document.getElementById('video-wrapper');
+            const linksWrapper = document.getElementById('stream-links-wrapper');
+            
+            playerSection.style.display = 'block';
+            videoWrapper.innerHTML = '<div class="loading" style="padding:1rem;">جاري البحث عن مصادر التشغيل...</div>';
+            linksWrapper.innerHTML = '';
+            
+            // Scroll to player
+            playerSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            try {
+                const res = await fetchAPI(`/anime/${animeId}/episodes/${episodeId}/streams`);
+                let streams = [];
+                
+                // Flexible Extraction logic for Streams
+                if (Array.isArray(res)) {
+                    streams = res;
+                } else if (res && typeof res === 'object') {
+                    // It might be an object containing arrays or direct links
+                    streams = res.data || res.results || res.streams || [];
+                    if (streams.length === 0) {
+                        // Attempt to extract values if the object itself is a dictionary of links
+                        Object.values(res).forEach(val => {
+                            if (typeof val === 'string' && val.startsWith('http')) streams.push({ url: val });
+                            else if (val && val.url) streams.push(val);
+                        });
+                    }
+                }
+
+                if (streams.length === 0) {
+                    videoWrapper.innerHTML = '<div class="error">لم يتم العثور على مصادر تشغيل لهذه الحلقة.</div>';
+                    return;
+                }
+
+                videoWrapper.innerHTML = ''; // clear loading
+                
+                // Create buttons for each source
+                streams.forEach((stream, index) => {
+                    const url = getSafeValue(stream, ['url', 'link', 'src', 'file']);
+                    const quality = getSafeValue(stream, ['quality', 'resolution', 'name', 'server'], `مصدر ${index + 1}`);
+                    
+                    if (url !== 'غير متوفر') {
+                        const btn = document.createElement('button');
+                        btn.className = 'stream-btn';
+                        btn.innerText = `تشغيل: ${quality}`;
+                        btn.onclick = () => playVideo(url);
+                        linksWrapper.appendChild(btn);
+                    }
+                });
+
+                // Auto-play the first valid source
+                const firstUrl = getSafeValue(streams[0], ['url', 'link', 'src', 'file']);
+                if (firstUrl !== 'غير متوفر') {
+                    playVideo(firstUrl);
+                }
+
+            } catch (error) {
+                videoWrapper.innerHTML = `<div class="error">فشل جلب مصادر التشغيل.</div>`;
+            }
+        }
+
+        // 10. Video Player Logic
+        function playVideo(url) {
+            const videoWrapper = document.getElementById('video-wrapper');
+            
+            // Check if it's an mp4 or m3u8 direct link
+            if (url.includes('.mp4') || url.includes('.m3u8') || url.includes('.webm')) {
+                videoWrapper.innerHTML = `
+                    <video controls autoplay>
+                        <source src="${url}">
+                        متصفحك لا يدعم مشغل الفيديو.
+                    </video>
+                    <p style="color:var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">
+                        إذا لم يعمل الفيديو، قد يكون الرابط منتهي الصلاحية أو محمي بـ CORS. <br>
+                        <a href="${url}" target="_blank" style="color:var(--primary);">اضغط هنا لفتح الرابط خارجياً</a>
+                    </p>
+                `;
+            } else {
+                // If it's not a direct video file, it's likely an iframe embed or external player page
+                videoWrapper.innerHTML = `
+                    <div style="padding: 2rem; border: 1px dashed var(--border); border-radius: 8px;">
+                        <p style="margin-bottom: 1rem;">هذا المصدر عبارة عن صفحة خارجية / Iframe لا يمكن تشغيلها مباشرة في المشغل الافتراضي الخاص بنا بأمان.</p>
+                        <a href="${url}" target="_blank" class="stream-btn" style="text-decoration:none;">🔗 فتح السيرفر في نافذة جديدة</a>
+                    </div>
+                `;
+            }
+        }
+
+        // Start the application when DOM is ready
+        document.addEventListener('DOMContentLoaded', initApp);
+
+    </script>
 </body>
 </html>
